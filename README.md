@@ -1,3 +1,15 @@
+
+
+gatsby develop
+
+npm install --save react-bootstrap bootstrap
+
+
+
+
+
+
+
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <p align="center">
   <a href="https://www.gatsbyjs.org">
