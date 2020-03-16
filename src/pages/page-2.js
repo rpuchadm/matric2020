@@ -13,8 +13,9 @@ const SecondPage = () => {
   const [idcurso,setIdcurso] = useState(62679);
   const [idioma,setIdioma] = useState("es");
 
-  const link = `https://informes.cfp.upv.es/cfp-ws/rest/curso/ficha/${idcurso}/${idioma}`;
-
+  const link1 = `https://informes.cfp.upv.es/cfp-ws/rest/curso/ficha/${idcurso}/${idioma}`;
+  const link2 = `../matric?idcurso=${idcurso}&idioma=${idioma}`;
+  
   return (
     <Layout title="Page two">
       <Container>
@@ -38,7 +39,9 @@ const SecondPage = () => {
               </Form.Group>
             </Col>
             <Col xs={12} md={6}>
-              <Button href={link} target='_blank'>Link idcurso={idcurso} idioma={idioma}</Button>
+              <Button href={link1} target='_blank'>Link json</Button>
+              &nbsp;&nbsp;&nbsp;
+              <Button href={link2} target='_blank'>Link matric</Button>
             </Col>
           </Row>
         </Form>
