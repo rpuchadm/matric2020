@@ -23,7 +23,7 @@ const MatricContainer = ({idioma,idcurso}) => {
         }
     },[idcurso,idioma]);
     if( data.error ) return( <Error error={data.error} /> );
-    if( data.loading === true ) return( <LoadingImage/> );
+    if( data.loading ) { return( <LoadingImage/> ); }
     if( data.curso ) {
         return(
             <Layout title="MatricContainer">
