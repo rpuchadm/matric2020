@@ -11,15 +11,12 @@ const MatricContainer = ({idioma,idcurso}) => {
 
     useEffect( () => {
         if( idcurso && idioma ) {
-            console.log("useEffect CON fetch idcurso:", idcurso, " idioma:", idioma);
-            const link = `/cfp-ws/rest/curso/fich-a/${idcurso}/${idioma}`;
+            const link = `/cfp-ws/rest/curso/ficha/${idcurso}/${idioma}`;
             setData({loading: true, link: link});
             fetch( link)
             .then( res => res.json())
             .then( res => setData({ curso: res, loading: false }))
             .catch( (err) => { console.log("err:", err); setData({ error: true, url: link }) } )
-        } else {
-            console.log("useEffect sin fetch idcurso:", idcurso, " idioma:", idioma);
         }
     },[idcurso,idioma]);
     if( data.error ) return( <Error error={data.error} url={data.url} /> );
