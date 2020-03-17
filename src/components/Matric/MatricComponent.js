@@ -2,14 +2,29 @@ import React from "react";
 import PropTypes from "prop-types";
 
 
+const Precios = ({listadoPrecios,precioObservaciones}) => {
+    if( listadoPrecios && listadoPrecios.length > 0 ) {
+        return(
+            <>
+            listadoPrecios: { JSON.stringify( listadoPrecios)}
+            </>
+        )
+    }
+    if( precioObservaciones )
+        return (
+            <>
+            precioObservaciones: {precioObservaciones}
+            <br/>
+            </>
+        );
+}
+
 const MatricComponent = ({idioma,curso}) => {
     return(
         <div>
             {curso.acronimo}
             <br/>
-            <strong>{curso.denominacion}</strong>
-            <br/>
-            {curso.precioObservaciones}
+            <Precios {...curso} />
             <br/>
             {JSON.stringify(curso.listadoPrecios)}
             <hr/>
