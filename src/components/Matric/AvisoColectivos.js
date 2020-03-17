@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+import React, { useState } from "react"
+import PropTypes from "prop-types"
 
-import Alert from 'react-bootstrap/Alert';
-import Button from 'react-bootstrap/Button';
-import { FaKey, FaTimesCircle } from 'react-icons/fa';
+import Alert from 'react-bootstrap/Alert'
+import Button from 'react-bootstrap/Button'
+import { FaKey, FaTimesCircle } from 'react-icons/fa'
 
 const AvisoColectivos = ({idioma,nc}) => {
     const [show, setShow] = useState(true);

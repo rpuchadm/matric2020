@@ -1,8 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from "react"
+import PropTypes from "prop-types"
 
-import Badge from 'react-bootstrap/Badge';
-import ListGroup from 'react-bootstrap/ListGroup';
+import Badge from 'react-bootstrap/Badge'
+import Card from 'react-bootstrap/Card'
+import ListGroup from 'react-bootstrap/ListGroup'
 
 import Euros from "../Euros"
 import AvisoColectivos from "./AvisoColectivos"
@@ -20,31 +21,37 @@ const Precio = ({colectivo,precio,texto}) => {
 
 const ListadoPrecios = ({listadoPrecios}) => {
     return(
+        <>
+        Debe seleccionar el precio más barato de entre los que tenga disponibles:
         <ListGroup>
             { listadoPrecios.map( (pre,i) => <Precio key={i} {...pre} /> )}
         </ListGroup>
+        </>
     )
 }
 
 const Precios = ({idioma,listadoPrecios,precioObservaciones}) => {
+    let cont = null;
     if( listadoPrecios && listadoPrecios.length > 0 ) {
         const nc = listadoPrecios.filter( pre => pre.colectivo ).length;
-        return(
+        cont =
             <>
             { nc ? <AvisoColectivos idioma={idioma} nc={nc} /> : null }
             <ListadoPrecios listadoPrecios={listadoPrecios} />
             </>
-        )
-    }
-    if( precioObservaciones ) {
-        return (
+    } else if( precioObservaciones ) {
+          cont =
             <>
             precioObservaciones: {precioObservaciones}
             <br/>
             </>
-        );
     }
-    return null;
+    return (
+        <Card>
+            <Card.Header>Precio</Card.Header>
+            <Card.Body>{cont}</Card.Body>
+        </Card>
+    )
 }
 
 Precios.propTypes = {
