@@ -29,12 +29,12 @@ const ListadoPrecios = ({listadoPrecios}) => {
     )
 }
 
-const Precios = ({listadoPrecios,precioObservaciones}) => {
+const Precios = ({idioma,listadoPrecios,precioObservaciones}) => {
     if( listadoPrecios && listadoPrecios.length > 0 ) {
         const nc = listadoPrecios.filter( pre => pre.colectivo ).length;
         return(
             <>
-            { nc ? <AvisoColectivos nc={nc} /> : null }
+            { nc ? <AvisoColectivos idioma={idioma} nc={nc} /> : null }
             <ListadoPrecios listadoPrecios={listadoPrecios} />
             </>
         )
@@ -57,7 +57,7 @@ const MatricComponent = ({idioma,curso}) => {
                 <Col xs={12} md={4} >
                     {curso.acronimo}
                     <br/>
-                    <Precios {...curso} />
+                    <Precios {...curso} idioma={idioma} />
                 </Col>
             </Row>
             <Row>
