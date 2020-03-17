@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
+import React, { useEffect, useState } from "react"
+import PropTypes from "prop-types"
 
-import Error from "../Error";
-import Layout from "../layout";
-import LoadingImage from "../LoadingImage";
+import MatricComponent from "./MatricComponent"
+import Error from "../Error"
+import Layout from "../layout"
+import LoadingImage from "../LoadingImage"
 
 const MatricContainer = ({idioma,idcurso}) => {
 
@@ -22,24 +23,17 @@ const MatricContainer = ({idioma,idcurso}) => {
     if( data.error ) return( <Error error={data.error} url={data.url} /> );
     if( data.loading ) { return( <LoadingImage/> ); }
     if( data.curso ) {
+        const title = data.curso.denominacion;
         return(
-            <Layout title="MatricContainer">
-                <div>
-                    idcurso:{idcurso}, idioma:{idioma}
-                    <br/>
-                    {data.curso.acronimo}
-                    <br/>
-                    <strong>{data.curso.denominacion}</strong>
-                    <hr/>
-                    {JSON.stringify( data.curso )}
-                </div>
+            <Layout title={title}>
+                <MatricComponent {...data} idioma={idioma} />
             </Layout>
         );
     }
     return null;
 }
 
-Layout.propTypes = {
+MatricContainer.propTypes = {
     idioma: PropTypes.string.isRequired,
     idcurso: PropTypes.number.isRequired,
 }

@@ -10,7 +10,7 @@ const MatricPage = (page) => {
   let idioma = qs ? qs['idioma'] : null;  
   if( !idioma) idioma = 'es';
   let idcurso = qs ? qs['idcurso'] : null;
-  const params = { idioma: idioma, idcurso: idcurso};
+  const params = { idioma: idioma, idcurso: parseInt( idcurso, 10) };
   return (
     <MatricContainer {...params} />
   );
