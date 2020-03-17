@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
+import { FaKey, FaTimesCircle } from 'react-icons/fa';
 
 const AvisoColectivos = ({idioma,nc}) => {
     const [show, setShow] = useState(true);
@@ -32,12 +33,12 @@ const AvisoColectivos = ({idioma,nc}) => {
             <br/>
             Para poder acceder a ellos debe de identificarse en la Intranet de la UPV.
             <hr/>
-            <Button href={linkUPV} variant="success">
-                Identificación UPV
+            <Button href={linkUPV} target='_new' variant="success">
+                <FaKey /> Identificación UPV
             </Button>
             &nbsp;&nbsp;&nbsp;  
             <Button onClick={() => setShow(false)} variant="danger">
-                No soy UPV
+                <FaTimesCircle /> No soy UPV
             </Button>
         </Alert>
     )

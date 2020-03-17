@@ -9,6 +9,7 @@ import Row from 'react-bootstrap/Row';
 
 import Euros from "../Euros"
 import AvisoColectivos from "./AvisoColectivos"
+import FichaCurso from "./FichaCurso"
 
 const Precio = ({colectivo,precio,texto}) => {
     if( colectivo ) {
@@ -54,9 +55,10 @@ const MatricComponent = ({idioma,curso}) => {
     return(
         <Container>
             <Row>
-                <Col xs={12} md={4} >
-                    {curso.acronimo}
-                    <br/>
+                <Col xs={12} md={10} lg={6} >    
+                    <FichaCurso urlFicha={curso.urlFicha} idioma={idioma} />
+                </Col>
+                <Col xs={12} md={10} lg={6} >
                     <Precios {...curso} idioma={idioma} />
                 </Col>
             </Row>
