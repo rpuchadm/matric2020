@@ -10,11 +10,19 @@ import Euros from "../Euros"
 import AvisoColectivos from "./AvisoColectivos"
 
 const Precio = ({colectivo,id,idPrecio,precio,texto}) => {
-    //const seleccionable = ( idPrecio == 5 || !idPrecio )
+    const isDisabled = ( !isNaN( idPrecio) && idPrecio !== 5 ) ;
+    console.log( id + 'isDisabled:', isDisabled )
+    const badgevariant = isDisabled ? 'dark' : 'success' ;
+    const listvariant = isDisabled ? 'dark' : 'light' ;
     if( colectivo || idPrecio ) return (
-            <ListGroup.Item>
-                <Form.Check type='radio' name='precio' value={id} />
-                <Badge pill variant='warning' ><Euros valor={precio} /></Badge> {colectivo}
+            <ListGroup.Item variant={listvariant} >
+                <Form.Check name='precio' value={id} >
+                    <Form.Check.Input type='radio' disabled={isDisabled} />
+                    <Form.Check.Label>
+                        <Badge pill variant={badgevariant} ><Euros valor={precio} /></Badge> {colectivo}
+                        { isDisabled ? <small> (No seleccionable)</small> : null }
+                    </Form.Check.Label>
+                </Form.Check>
             </ListGroup.Item>
     )
     return (
@@ -36,7 +44,7 @@ Precio.propTypes = {
 const ListadoPrecios = ({listadoPrecios}) => {
     return(
         <Form>
-        Debe seleccionar el precio más barato de entre los que tenga disponibles:
+        Debe seleccionar el precio más económico de entre los que tenga disponibles:
         <ListGroup>
             { listadoPrecios.map( (pre) => <Precio key={pre.id} {...pre} /> )}
         </ListGroup>
