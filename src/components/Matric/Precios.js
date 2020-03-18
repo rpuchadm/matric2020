@@ -30,7 +30,8 @@ const ListadoPrecios = ({listadoPrecios}) => {
     )
 }
 
-const Precios = ({idioma,listadoPrecios,precioObservaciones}) => {
+const Precios = ({fechaAnulado,idioma,listadoPrecios,precioObservaciones}) => {
+    if( fechaAnulado) return null;
     let cont = null;
     if( listadoPrecios && listadoPrecios.length > 0 ) {
         const nc = listadoPrecios.filter( pre => pre.colectivo ).length;
@@ -55,6 +56,7 @@ const Precios = ({idioma,listadoPrecios,precioObservaciones}) => {
 }
 
 Precios.propTypes = {
+    fechaAnulado: PropTypes.number,
     listadoPrecios: PropTypes.array.isRequired,
     idioma: PropTypes.string.isRequired,
     precioObservaciones: PropTypes.string.isRequired,

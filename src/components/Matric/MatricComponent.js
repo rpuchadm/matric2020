@@ -13,7 +13,7 @@ const MatricComponent = ({idioma,curso}) => {
         <Container>
             <Row>
                 <Col xs={12} md={10} lg={6} >    
-                    <FichaCurso urlFicha={curso.urlFicha} idioma={idioma} />
+                    <FichaCurso{...curso} idioma={idioma} />
                 </Col>
             </Row>
             <Row>
