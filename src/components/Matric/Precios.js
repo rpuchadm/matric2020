@@ -9,12 +9,10 @@ import Euros from "../Euros"
 import AvisoColectivos from "./AvisoColectivos"
 
 const Precio = ({colectivo,precio,texto}) => {
-    if( colectivo ) {
-        return(
+    if( colectivo ) return (
             <ListGroup.Item> <Badge pill variant='warning' ><Euros valor={precio} /></Badge> {colectivo}</ListGroup.Item>
-        )
-    }
-    return(
+    )
+    return (
         <ListGroup.Item> <Badge pill variant='primary' ><Euros valor={precio} /></Badge> {texto}</ListGroup.Item>
     )
 }
