@@ -26,9 +26,14 @@ const Precio = ({colectivo,id,idPrecio,precio,texto}) => {
             </ListGroup.Item>
     )
     return (
-        <ListGroup.Item>
-            <Form.Check type='radio' name='precio' value={id} />
-            <Badge pill variant='primary' ><Euros valor={precio} /></Badge> {texto}
+        <ListGroup.Item variant={listvariant} >
+            <Form.Check name='precio' value={id} >
+                <Form.Check.Input type='radio' disabled={isDisabled} />
+                <Form.Check.Label>
+                    <Badge pill variant={badgevariant} ><Euros valor={precio} /></Badge> {texto}
+                    { isDisabled ? <small> (No seleccionable)</small> : null }
+                </Form.Check.Label>
+            </Form.Check>
         </ListGroup.Item>
     )
 }
@@ -57,6 +62,7 @@ const Precios = ({fechaAnulado,idioma,listadoPrecios,precioObservaciones}) => {
     let cont = null;
     if( listadoPrecios && listadoPrecios.length > 0 ) {
         const nc = listadoPrecios.filter( pre => pre.colectivo ).length;
+        listadoPrecios = listadoPrecios.sort( (a,b) => a.precio-b.precio)
         cont =
             <>
             { nc ? <AvisoColectivos idioma={idioma} nc={nc} /> : null }
