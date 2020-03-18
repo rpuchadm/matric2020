@@ -1,10 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
-import moment from "moment";
+import React from "react"
+import PropTypes from "prop-types"
+import moment from "moment"
 
-import Alert from 'react-bootstrap/Alert';
-import Button from 'react-bootstrap/Button';
-import { FaPlusCircle } from 'react-icons/fa';
+import Alert from 'react-bootstrap/Alert'
+import Badge from 'react-bootstrap/Badge'
+import Button from 'react-bootstrap/Button'
+import { FaPlusCircle } from 'react-icons/fa'
 
 // a imagen y semejanza de ../matriculable.js
 const Estado = ({fechaInicio,fechaIniPreinscripcion,fechaFinPreinscripcion,fechaMatricula,fechaMatriculaFin,idioma}) => {
@@ -12,20 +13,20 @@ const Estado = ({fechaInicio,fechaIniPreinscripcion,fechaFinPreinscripcion,fecha
     const ara = new Date();
     if( fechaHasta < ara )
         return (
-            <><br/>Matricula finalizada desde {moment(fechaHasta).format('DD/MM/YYYY')}. </>
+            <><br/><Badge variant="danger">Matricula finalizada desde {moment(fechaHasta).format('DD/MM/YYYY')}</Badge></>
         )
     if( fechaMatricula ) { 
         return (
-            <><br/>Matriculable desde {moment(fechaMatricula).format('DD/MM/YYYY')}. </>
+            <><br/><Badge variant="success">Matriculable desde {moment(fechaMatricula).format('DD/MM/YYYY')}</Badge></>
         )    
     } else if( fechaIniPreinscripcion ) {
         if( fechaFinPreinscripcion && fechaFinPreinscripcion < ara) {
             return (
-                <><br/>Preinscripción finalizada desde {moment(fechaFinPreinscripcion).format('DD/MM/YYYY')}. </>
+                <><br/><Badge variant="danger">Preinscripción finalizada desde {moment(fechaFinPreinscripcion).format('DD/MM/YYYY')}</Badge></>
             )      
         }
         return (
-            <><br/>En preinscripción desde {moment(fechaIniPreinscripcion).format('DD/MM/YYYY')}. </>
+            <><br/><Badge variant="success">En preinscripción desde {moment(fechaIniPreinscripcion).format('DD/MM/YYYY')}</Badge></>
         )
     }
 }

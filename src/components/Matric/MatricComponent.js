@@ -10,6 +10,7 @@ import FichaCurso from "./FichaCurso"
 import Precios from "./Precios"
 
 const MatricComponent = ({idioma,curso}) => {
+    const ismatriculable = matriculable( curso);
     return(
         <Container>
             <Row>
@@ -17,14 +18,14 @@ const MatricComponent = ({idioma,curso}) => {
                     <FichaCurso{...curso} idioma={idioma} />
                 </Col>
             </Row>
-            { matriculable({curso}) ?
+            { ismatriculable ?
             <Row>
                 <Col xs={12} md={10} lg={6} >
                     <Precios {...curso} idioma={idioma} />
                 </Col>
             </Row>
-                : null}
-          
+                : null
+            }
             <Row>
                 <Col xs={12} >
                     <hr/>
