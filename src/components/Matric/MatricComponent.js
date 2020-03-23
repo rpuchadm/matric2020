@@ -11,7 +11,7 @@ import Precios from "./Precios"
 import Persona from "./Persona"
 
 const MatricComponent = ({idioma,curso,persona,preciosColectivos,
-        precioElegido,email,nombre,apellido1,apellido2,
+        precioElegido,email,emailrepite,nombre,apellido1,apellido2,
         setData}) => {
     const ismatriculable = matriculable( curso);
     return(
@@ -37,6 +37,7 @@ const MatricComponent = ({idioma,curso,persona,preciosColectivos,
                 <Col xs={12} >
                     precioElegido:<small>{precioElegido}</small>
                     , email:<small>{email}</small>
+                    , emailrepite:<small>{emailrepite}</small>
                     , nombre:<small>{nombre}</small>
                     , apellido1:<small>{apellido1}</small>
                     , apellido2:<small>{apellido2}</small>
