@@ -34,7 +34,7 @@ const MatricContainer = ({idioma,idcurso}) => {
         const title = data.curso.denominacion;
         return(
             <Layout title={title}>
-                <MatricComponent {...data} idioma={idioma} />
+                <MatricComponent {...data} idioma={idioma} setData={setData} />
             </Layout>
         );
     }

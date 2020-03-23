@@ -9,16 +9,17 @@ import ListGroup from 'react-bootstrap/ListGroup'
 import Euros from "../Euros"
 import AvisoColectivos from "./AvisoColectivos"
 
-const Precio = ({colectivo,id,idPrecio,precio,texto,preciosColectivos}) => {
+const Precio = ({colectivo,id,idPrecio,precio,texto,preciosColectivos,setData}) => {
     const upvexcl = ( !isNaN( idPrecio) && idPrecio !== 5 ) ;
     const isDisabled = ( upvexcl && !preciosColectivos ) ;
-    console.log( id + 'isDisabled:', isDisabled )
     const badgevariant = isDisabled ? 'dark' : ( upvexcl ? 'success' : 'primary' ) ;
     const listvariant = isDisabled ? 'dark' : 'light' ;
     if( colectivo || idPrecio ) return (
             <ListGroup.Item variant={listvariant} >
                 <Form.Check value={id} >
-                    <Form.Check.Input type='radio' name='precio' disabled={isDisabled} />
+                    <Form.Check.Input type='radio' name='precio' disabled={isDisabled} 
+                        onChange={(ev) => setData( (prev) => ({...prev, precioElegido: id})) }
+                        />
                     <Form.Check.Label>
                         <Badge pill variant={badgevariant} ><Euros valor={precio} /></Badge> {colectivo}
                         { isDisabled ? <small> (No seleccionable)</small> : null }
@@ -29,7 +30,9 @@ const Precio = ({colectivo,id,idPrecio,precio,texto,preciosColectivos}) => {
     return (
         <ListGroup.Item variant={listvariant} >
             <Form.Check  value={id} >
-                <Form.Check.Input type='radio' name='precio' disabled={isDisabled} />
+                <Form.Check.Input type='radio' name='precio' disabled={isDisabled}
+                    onChange={(ev) => setData( (prev) => ({...prev, precioElegido: id})) } 
+                    />
                 <Form.Check.Label>
                     <Badge pill variant={badgevariant} ><Euros valor={precio} /></Badge> {texto}
                     { isDisabled ? <small> (No seleccionable)</small> : null }
@@ -48,7 +51,7 @@ Precio.propTypes = {
     preciosColectivos: PropTypes.array,
 }
 
-const ListadoPrecios = ({listadoPrecios,idioma,preciosColectivos}) => {
+const ListadoPrecios = ({listadoPrecios,idioma,preciosColectivos,setData}) => {
     return(
         <Form>
         <strong>Debe seleccionar el precio más económico de entre los que tenga disponibles:</strong>
@@ -57,6 +60,7 @@ const ListadoPrecios = ({listadoPrecios,idioma,preciosColectivos}) => {
                     preciosColectivos={ ( preciosColectivos && preciosColectivos.length ) ? 
                         preciosColectivos.filter( precol => precol.id === pre.id )
                         : null} 
+                    setData={setData}
                 /> )}
         </ListGroup>
         </Form>
@@ -95,6 +99,7 @@ Precios.propTypes = {
     idioma: PropTypes.string.isRequired,
     precioObservaciones: PropTypes.string.isRequired,
     preciosColectivos: PropTypes.array,
+    setData: PropTypes.func,
 }
 
 export default Precios
