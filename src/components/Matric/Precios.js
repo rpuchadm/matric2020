@@ -54,7 +54,7 @@ Precio.propTypes = {
 const ListadoPrecios = ({listadoPrecios,idioma,preciosColectivos,setData}) => {
     return(
         <Form>
-        <strong>Debe seleccionar el precio más económico de entre los que tenga disponibles:</strong>
+        <span className='lead'>Debe seleccionar el precio más económico de entre los que tenga disponibles:</span>
         <ListGroup>
             { listadoPrecios.map( (pre) => <Precio key={pre.id} {...pre} idioma={idioma} 
                     preciosColectivos={ ( preciosColectivos && preciosColectivos.length ) ? 

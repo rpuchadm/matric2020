@@ -8,8 +8,11 @@ import Row from 'react-bootstrap/Row'
 import matriculable from '../matriculable'
 import FichaCurso from "./FichaCurso"
 import Precios from "./Precios"
+import Persona from "./Persona"
 
-const MatricComponent = ({idioma,curso,persona,preciosColectivos,precioElegido,setData}) => {
+const MatricComponent = ({idioma,curso,persona,preciosColectivos,
+        precioElegido,email,nombre,apellido1,apellido2,
+        setData}) => {
     const ismatriculable = matriculable( curso);
     return(
         <Container>
@@ -19,18 +22,24 @@ const MatricComponent = ({idioma,curso,persona,preciosColectivos,precioElegido,s
                 </Col>
             </Row>
             { ismatriculable ?
+            <>
             <Row>
                 <Col xs={12} md={10} lg={6} >
                     <Precios {...curso} idioma={idioma} persona={persona} 
                         preciosColectivos={preciosColectivos} setData={setData} />
                 </Col>
             </Row>
+            { precioElegido ? <Persona persona={persona} setData={setData} /> : null }
+            </>
                 : null
             }
             <Row>
                 <Col xs={12} >
-                    precioElegido:
-                    <small>{JSON.stringify( precioElegido )}</small>
+                    precioElegido:<small>{precioElegido}</small>
+                    , email:<small>{email}</small>
+                    , nombre:<small>{nombre}</small>
+                    , apellido1:<small>{apellido1}</small>
+                    , apellido2:<small>{apellido2}</small>
                     <hr/> persona:
                     <small>{JSON.stringify( persona )}</small>
                     <hr/>preciosColectivos:
