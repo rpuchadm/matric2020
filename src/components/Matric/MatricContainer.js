@@ -15,7 +15,7 @@ const MatricContainer = ({idioma,idcurso}) => {
             setData({loading: true, link: link});
             fetch( link)
             .then( res => res.json())
-            .then( res => setData( (prev) => { return ({...prev, preciosColectivos: res, loading: false })}))
+            .then( res => setData( (prev) => { return ({...prev, ...res, loading: false })}))
             .catch( (err) => { console.log("err:", err); setData({ error: true, url: link }) } )        
         }
         fetchPrecioColectivos();

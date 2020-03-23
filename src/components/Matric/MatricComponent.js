@@ -9,7 +9,7 @@ import matriculable from '../matriculable'
 import FichaCurso from "./FichaCurso"
 import Precios from "./Precios"
 
-const MatricComponent = ({idioma,curso,preciosColectivos}) => {
+const MatricComponent = ({idioma,curso,persona,preciosColectivos}) => {
     const ismatriculable = matriculable( curso);
     return(
         <Container>
@@ -21,17 +21,19 @@ const MatricComponent = ({idioma,curso,preciosColectivos}) => {
             { ismatriculable ?
             <Row>
                 <Col xs={12} md={10} lg={6} >
-                    <Precios {...curso} idioma={idioma} preciosColectivos={preciosColectivos} />
+                    <Precios {...curso} idioma={idioma} persona={persona} preciosColectivos={preciosColectivos} />
                 </Col>
             </Row>
                 : null
             }
             <Row>
                 <Col xs={12} >
-                    <hr/>
-                    <small>{JSON.stringify( curso )}</small>
-                    <hr/>
+                    <hr/> persona:
+                    <small>{JSON.stringify( persona )}</small>
+                    <hr/>preciosColectivos:
                     <small>{JSON.stringify( preciosColectivos )}</small>
+                    <hr/>curso:
+                    <small>{JSON.stringify( curso )}</small>
                 </Col>
             </Row>
         </Container>
@@ -41,6 +43,8 @@ const MatricComponent = ({idioma,curso,preciosColectivos}) => {
 MatricComponent.propTypes = {
     curso: PropTypes.object.isRequired,
     idioma: PropTypes.string.isRequired,
+    persona: PropTypes.object,
+    preciosColectivos: PropTypes.array,
 }
 
 export default MatricComponent

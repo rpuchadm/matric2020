@@ -62,7 +62,7 @@ const ListadoPrecios = ({listadoPrecios,idioma,preciosColectivos}) => {
     )
 }
 
-const Precios = ({fechaAnulado,idioma,listadoPrecios,precioObservaciones,preciosColectivos}) => {
+const Precios = ({fechaAnulado,idioma,listadoPrecios,precioObservaciones,...otherprops}) => {
     if( fechaAnulado) return null;
     let cont = null;
     if( listadoPrecios && listadoPrecios.length > 0 ) {
@@ -70,8 +70,8 @@ const Precios = ({fechaAnulado,idioma,listadoPrecios,precioObservaciones,precios
         listadoPrecios = listadoPrecios.sort( (a,b) => a.precio-b.precio)
         cont =
             <>
-            { nc ? <AvisoColectivos idioma={idioma} nc={nc} preciosColectivos={preciosColectivos} /> : null }
-            <ListadoPrecios listadoPrecios={listadoPrecios} idioma={idioma} preciosColectivos={preciosColectivos} />
+            { nc ? <AvisoColectivos idioma={idioma} nc={nc} {...otherprops} /> : null }
+            <ListadoPrecios listadoPrecios={listadoPrecios} idioma={idioma} {...otherprops} />
             </>
     } else if( precioObservaciones ) {
           cont =
