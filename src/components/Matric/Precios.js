@@ -10,9 +10,10 @@ import Euros from "../Euros"
 import AvisoColectivos from "./AvisoColectivos"
 
 const Precio = ({colectivo,id,idPrecio,precio,texto,preciosColectivos}) => {
-    const isDisabled = ( !isNaN( idPrecio) && idPrecio !== 5 && !preciosColectivos ) ;
+    const upvexcl = ( !isNaN( idPrecio) && idPrecio !== 5 ) ;
+    const isDisabled = ( upvexcl && !preciosColectivos ) ;
     console.log( id + 'isDisabled:', isDisabled )
-    const badgevariant = isDisabled ? 'dark' : 'success' ;
+    const badgevariant = isDisabled ? 'dark' : ( upvexcl ? 'success' : 'primary' ) ;
     const listvariant = isDisabled ? 'dark' : 'light' ;
     if( colectivo || idPrecio ) return (
             <ListGroup.Item variant={listvariant} >
