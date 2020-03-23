@@ -38,7 +38,7 @@ const Precio = ({colectivo,id,idPrecio,precio,texto}) => {
     )
 }
 Precio.propTypes = {
-    colectivo: PropTypes.number,
+    colectivo: PropTypes.string,
     id: PropTypes.number.isRequired,
     idPrecio: PropTypes.number,
     precio: PropTypes.number.isRequired,
@@ -46,12 +46,12 @@ Precio.propTypes = {
     texto: PropTypes.string,
 }
 
-const ListadoPrecios = ({listadoPrecios}) => {
+const ListadoPrecios = ({listadoPrecios,idioma}) => {
     return(
         <Form>
         Debe seleccionar el precio más económico de entre los que tenga disponibles:
         <ListGroup>
-            { listadoPrecios.map( (pre) => <Precio key={pre.id} {...pre} /> )}
+            { listadoPrecios.map( (pre) => <Precio key={pre.id} {...pre} idioma={idioma} /> )}
         </ListGroup>
         </Form>
     )
@@ -66,7 +66,7 @@ const Precios = ({fechaAnulado,idioma,listadoPrecios,precioObservaciones}) => {
         cont =
             <>
             { nc ? <AvisoColectivos idioma={idioma} nc={nc} /> : null }
-            <ListadoPrecios listadoPrecios={listadoPrecios} />
+            <ListadoPrecios listadoPrecios={listadoPrecios} idioma={idioma} />
             </>
     } else if( precioObservaciones ) {
           cont =

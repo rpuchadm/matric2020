@@ -9,14 +9,22 @@ import LoadingImage from "../LoadingImage"
 const MatricContainer = ({idioma,idcurso}) => {
 
     const [data,setData] = useState({});
-
     useEffect( () => {
+        const fetchPrecioColectivos = () => {
+            const link = `/cfp-ws/rest/matricula/precios-colectivos/${idcurso}`;
+            setData({loading: true, link: link});
+            fetch( link)
+            .then( res => res.json())
+            .then( res => setData( (prev) => { return ({...prev, preciosColectivos: res, loading: false })}))
+            .catch( (err) => { console.log("err:", err); setData({ error: true, url: link }) } )        
+        }
+        fetchPrecioColectivos();
         if( idcurso && idioma ) {
             const link = `/cfp-ws/rest/curso/ficha/${idcurso}/${idioma}`;
             setData({loading: true, link: link});
             fetch( link)
             .then( res => res.json())
-            .then( res => setData({ curso: res, loading: false }))
+            .then( res => setData( (prev) => { return ({ ...prev, curso: res, loading: false })}))
             .catch( (err) => { console.log("err:", err); setData({ error: true, url: link }) } )
         }
     },[idcurso,idioma]);

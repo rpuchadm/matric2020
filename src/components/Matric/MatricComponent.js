@@ -9,7 +9,7 @@ import matriculable from '../matriculable'
 import FichaCurso from "./FichaCurso"
 import Precios from "./Precios"
 
-const MatricComponent = ({idioma,curso}) => {
+const MatricComponent = ({idioma,curso,preciosColectivos}) => {
     const ismatriculable = matriculable( curso);
     return(
         <Container>
@@ -29,7 +29,9 @@ const MatricComponent = ({idioma,curso}) => {
             <Row>
                 <Col xs={12} >
                     <hr/>
-                    {JSON.stringify( curso )}
+                    <small>{JSON.stringify( curso )}</small>
+                    <hr/>
+                    <small>{JSON.stringify( preciosColectivos )}</small>
                 </Col>
             </Row>
         </Container>
