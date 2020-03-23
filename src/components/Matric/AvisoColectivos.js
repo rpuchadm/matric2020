@@ -5,7 +5,7 @@ import Alert from 'react-bootstrap/Alert'
 import Button from 'react-bootstrap/Button'
 import { FaKey, FaTimesCircle } from 'react-icons/fa'
 
-const AvisoColectivos = ({idioma,nc}) => {
+const AvisoColectivos = ({idioma,nc,preciosColectivos}) => {
     const [show, setShow] = useState(true);
     if( !show) {
         return(
@@ -18,6 +18,18 @@ const AvisoColectivos = ({idioma,nc}) => {
             </div>
         )
     }
+    if ( preciosColectivos && preciosColectivos.length ) {
+        const sinResto = preciosColectivos.filter( pre => pre.idPrecio !== 5 )
+        return(
+            <Alert variant='success' onClose={() => setShow(false)} dismissible >
+                <Alert.Heading>Precios exclusivos para UPV</Alert.Heading>
+                Esta actividad dispone de {nc} precios exclusivos para colectivos de la Universitat Politècncia de València. 
+                <br/>
+                Ya está identificado como NOMBRE APELLIDOS, y cumple para {sinResto.length} de ellos.
+            </Alert>
+        )        
+    }
+
     let idi;
     switch ( idioma ) {
         case "es" : idi = 'c'; break;
@@ -47,6 +59,7 @@ const AvisoColectivos = ({idioma,nc}) => {
 AvisoColectivos.propTypes = {
     idioma: PropTypes.string.isRequired,
     nc: PropTypes.number.isRequired,
+    preciosColectivos: PropTypes.array,
 }
 
 export default AvisoColectivos

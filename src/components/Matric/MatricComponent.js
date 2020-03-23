@@ -21,7 +21,7 @@ const MatricComponent = ({idioma,curso,preciosColectivos}) => {
             { ismatriculable ?
             <Row>
                 <Col xs={12} md={10} lg={6} >
-                    <Precios {...curso} idioma={idioma} />
+                    <Precios {...curso} idioma={idioma} preciosColectivos={preciosColectivos} />
                 </Col>
             </Row>
                 : null
