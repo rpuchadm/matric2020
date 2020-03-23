@@ -14,10 +14,10 @@ const SecondPage = () => {
   const [idioma,setIdioma] = useState("es");
 
   const link1 = `https://informes.cfp.upv.es/cfp-ws/rest/curso/ficha/${idcurso}/${idioma}`;
-  const link2 = `../matric?idcurso=${idcurso}&idioma=${idioma}`;
+  const link2 = `./matric?idcurso=${idcurso}&idioma=${idioma}`;
   
   return (
-    <Layout title="Page two">
+    <Layout title="redirector">
       <Container>
         <Form>
           <Row>
