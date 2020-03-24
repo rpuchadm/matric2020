@@ -21,6 +21,10 @@ const MatriculaAviso = ({idioma,cursoPubli,curso,matricula,persona}) => {
             <Card.Header>Matrícula</Card.Header>
             <Card.Body>
                 {JSON.stringify( matricula)}
+                <br/>
+                {JSON.stringify( curso)}
+                <br/>
+                {JSON.stringify( persona)}
             </Card.Body>
         </Card>
         <br/>
