@@ -11,7 +11,7 @@ import AvisoColectivos from "./AvisoColectivos"
 
 const Precio = ({colectivo,id,idPrecio,precio,texto,preciosColectivos,setData}) => {
     const upvexcl = ( !isNaN( idPrecio) && idPrecio !== 5 ) ;
-    const isDisabled = ( upvexcl && !preciosColectivos ) ;
+    const isDisabled = ( upvexcl && preciosColectivos.length === 0 ) ;
     const badgevariant = isDisabled ? 'dark' : ( upvexcl ? 'success' : 'primary' ) ;
     const listvariant = isDisabled ? 'dark' : 'light' ;
     if( colectivo || idPrecio ) return (
