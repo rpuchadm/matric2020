@@ -18,7 +18,7 @@ const AvisoColectivos = ({idioma,nc,persona,preciosColectivos}) => {
             </div>
         )
     }
-    if ( persona ) { // preciosColectivos && preciosColectivos.length
+    if ( persona && preciosColectivos && preciosColectivos.length ) {
         const sinResto = preciosColectivos.filter( pre => pre.idPrecio !== 5 )
         return(
             <Alert variant='success' onClose={() => setShow(false)} dismissible >

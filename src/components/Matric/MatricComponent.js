@@ -7,25 +7,34 @@ import Row from 'react-bootstrap/Row'
 
 import matriculable from '../matriculable'
 import FichaCurso from "./FichaCurso"
+import MatriculaAviso from "./MatriculaAviso"
 import Precios from "./Precios"
 import Persona from "./Persona"
 
-const MatricComponent = ({idioma,curso,persona,preciosColectivos,
+const MatricComponent = ({idioma,cursoPubli,curso,matricula,persona,preciosColectivos,
         precioElegido,email,emailrepite,nombre,apellido1,apellido2,
         setData}) => {
-    const ismatriculable = matriculable( curso);
+    const ismatriculable = matriculable( cursoPubli);
     return(
         <Container>
             <Row>
                 <Col xs={12} md={10} lg={6} >    
-                    <FichaCurso {...curso} idioma={idioma} />
+                    <FichaCurso {...cursoPubli} idioma={idioma} />
                 </Col>
             </Row>
-            { ismatriculable ?
+            { matricula ?
+            <Row>
+                <Col xs={12} md={10} lg={6} >    
+                    <MatriculaAviso {...cursoPubli}  matricula={matricula} persona={persona} idioma={idioma} />
+                </Col>
+            </Row>
+            : null
+            }
+            { !matricula && ismatriculable ?
             <>
             <Row>
                 <Col xs={12} md={10} lg={6} >
-                    <Precios {...curso} idioma={idioma} persona={persona} 
+                    <Precios {...cursoPubli} idioma={idioma} persona={persona} 
                         preciosColectivos={preciosColectivos} setData={setData} />
                 </Col>
             </Row>
@@ -39,6 +48,9 @@ const MatricComponent = ({idioma,curso,persona,preciosColectivos,
             </>
                 : null
             }
+            <br/>
+            <br/>
+            <hr/>
             <Row>
                 <Col xs={12} >
                     precioElegido:<small>{precioElegido}</small>
@@ -47,12 +59,12 @@ const MatricComponent = ({idioma,curso,persona,preciosColectivos,
                     , nombre:<small>{nombre}</small>
                     , apellido1:<small>{apellido1}</small>
                     , apellido2:<small>{apellido2}</small>
-                    <hr/> persona:
-                    <small>{JSON.stringify( persona )}</small>
+                    <hr/> matricula:
+                    <small>{JSON.stringify( matricula )}</small>
                     <hr/>preciosColectivos:
                     <small>{JSON.stringify( preciosColectivos )}</small>
-                    <hr/>curso:
-                    <small>{JSON.stringify( curso )}</small>
+                    <hr/>cursoPubli:
+                    <small>{JSON.stringify( cursoPubli )}</small>
                 </Col>
             </Row>
         </Container>
@@ -60,8 +72,10 @@ const MatricComponent = ({idioma,curso,persona,preciosColectivos,
 }
 
 MatricComponent.propTypes = {
-    curso: PropTypes.object.isRequired,
+    cursoPubli: PropTypes.object.isRequired,
+    curso: PropTypes.object,
     idioma: PropTypes.string.isRequired,
+    matricula: PropTypes.object,
     persona: PropTypes.object,
     preciosColectivos: PropTypes.array,
     setData: PropTypes.func,

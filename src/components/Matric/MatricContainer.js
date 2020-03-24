@@ -11,7 +11,7 @@ const MatricContainer = ({idioma,idcurso}) => {
     const [data,setData] = useState({});
     useEffect( () => {
         const fetchPrecioColectivos = () => {
-            const link = `/cfp-ws/rest/matricula/precios-colectivos/${idcurso}`;
+            const link = `/cfp-ws/rest/matricula/intento/${idcurso}`;
             setData({loading: true, link: link});
             fetch( link)
             .then( res => res.json())
@@ -24,14 +24,14 @@ const MatricContainer = ({idioma,idcurso}) => {
             setData({loading: true, link: link});
             fetch( link)
             .then( res => res.json())
-            .then( res => setData( (prev) => { return ({ ...prev, curso: res, loading: false })}))
+            .then( res => setData( (prev) => { return ({ ...prev, cursoPubli: res, loading: false })}))
             .catch( (err) => { console.log("err:", err); setData({ error: true, url: link }) } )
         }
     },[idcurso,idioma]);
     if( data.error ) return( <Error error={data.error} url={data.url} /> );
     if( data.loading ) { return( <LoadingImage/> ); }
-    if( data.curso ) {
-        const title = data.curso.denominacion;
+    if( data.cursoPubli ) {
+        const title = data.cursoPubli.denominacion;
         return(
             <Layout title={title}>
                 <MatricComponent {...data} idioma={idioma} setData={setData} />
