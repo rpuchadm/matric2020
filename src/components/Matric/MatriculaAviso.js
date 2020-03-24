@@ -6,7 +6,7 @@ import Card from 'react-bootstrap/Card'
 
 const MatriculaAviso = ({idioma,cursoPubli,curso,matricula,persona}) => {
     let sestado = null ; let variant = 'default' ;
-    if ( matricula.estado === 'P' ) { sestado =  'martícula aceptada'; }
+    if ( matricula.estado === 'A' ) { sestado =  'martícula aceptada'; }
     else if ( matricula.estado === 'P' ) { sestado =  'preinscripción'; }
     else if ( matricula.estado === 'N' ) { sestado =  'martícula anulada'; }
     else if ( matricula.estado === 'R' ) { sestado =  'martícula rechazada'; }
