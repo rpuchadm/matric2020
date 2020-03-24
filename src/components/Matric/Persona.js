@@ -77,6 +77,9 @@ const Persona = ({persona,...otherprops}) => {
     return (
         <>
         <br/>
+        <span className='lead'>
+            Es muy importante que se asegure que sus datos personales son correctos. 
+        </span>
         <Card>
             <Card.Header>Datos personales</Card.Header>
             <Card.Body>{cont}</Card.Body>

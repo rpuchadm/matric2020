@@ -18,7 +18,7 @@ const AvisoColectivos = ({idioma,nc,persona,preciosColectivos}) => {
             </div>
         )
     }
-    if ( persona ) { // preciosColectivos && preciosColectivos.length
+    if ( persona && preciosColectivos && preciosColectivos.length ) {
         const sinResto = preciosColectivos.filter( pre => pre.idPrecio !== 5 )
         return(
             <Alert variant='success' onClose={() => setShow(false)} dismissible >
@@ -41,7 +41,7 @@ const AvisoColectivos = ({idioma,nc,persona,preciosColectivos}) => {
     return(
         <Alert variant='warning' onClose={() => setShow(false)} dismissible >
             <Alert.Heading>Precios exclusivos para UPV</Alert.Heading>
-            Esta actividad dispone de {nc} precios para personas de determinados colectivos de la Universitat Politècncia de València. 
+            Esta actividad dispone de {nc} precios para personas de colectivos de la Universitat Politècncia de València. 
             <br/>
             Para poder acceder a ellos debe de identificarse en la Intranet de la UPV.
             <hr/>
