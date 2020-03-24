@@ -29,7 +29,13 @@ const MatricComponent = ({idioma,curso,persona,preciosColectivos,
                         preciosColectivos={preciosColectivos} setData={setData} />
                 </Col>
             </Row>
-            { precioElegido ? <Persona persona={persona} setData={setData} /> : null }
+            { precioElegido ? 
+            <Row>
+                <Col xs={12} md={10} lg={6} >
+                    <Persona persona={persona} setData={setData} />
+                </Col>
+            </Row>
+            : null }
             </>
                 : null
             }

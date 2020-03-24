@@ -11,7 +11,7 @@ import AvisoColectivos from "./AvisoColectivos"
 
 const Precio = ({colectivo,id,idPrecio,precio,texto,preciosColectivos,setData}) => {
     const upvexcl = ( !isNaN( idPrecio) && idPrecio !== 5 ) ;
-    const isDisabled = ( upvexcl && preciosColectivos.length === 0 ) ;
+    const isDisabled = ( upvexcl && ( !preciosColectivos || preciosColectivos.length === 0 )) ;
     const badgevariant = isDisabled ? 'dark' : ( upvexcl ? 'success' : 'primary' ) ;
     const listvariant = isDisabled ? 'dark' : 'light' ;
     if( colectivo || idPrecio ) return (
@@ -54,7 +54,6 @@ Precio.propTypes = {
 const ListadoPrecios = ({listadoPrecios,idioma,preciosColectivos,setData}) => {
     return(
         <Form>
-        <span className='lead'>Debe seleccionar el precio más económico de entre los que tenga disponibles:</span>
         <ListGroup>
             { listadoPrecios.map( (pre) => <Precio key={pre.id} {...pre} idioma={idioma} 
                     preciosColectivos={ ( preciosColectivos && preciosColectivos.length ) ? 
@@ -86,10 +85,16 @@ const Precios = ({fechaAnulado,idioma,listadoPrecios,precioObservaciones,...othe
             </>
     }
     return (
+        <>
+        <br/>
+        <span className='lead'>
+            Debe seleccionar el precio más económico de entre los que tenga disponibles.
+        </span>
         <Card>
             <Card.Header>Precio</Card.Header>
             <Card.Body>{cont}</Card.Body>
         </Card>
+        </>
     )
 }
 
